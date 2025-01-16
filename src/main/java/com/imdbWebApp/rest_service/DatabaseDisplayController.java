@@ -1,4 +1,5 @@
 package com.imdbWebApp.rest_service;
+import jakarta.persistence.metamodel.IdentifiableType;
 import jakarta.validation.Valid;
 
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DatabaseDisplayController implements WebMvcConfigurer {
@@ -30,5 +32,8 @@ public class DatabaseDisplayController implements WebMvcConfigurer {
         model.addAttribute("movies", imdbRepository.findAll());
         return "dataBaseDisplay";
     }
+
+
+
 
 }

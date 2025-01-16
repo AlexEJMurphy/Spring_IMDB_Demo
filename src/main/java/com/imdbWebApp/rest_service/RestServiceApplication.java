@@ -14,75 +14,73 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.io.IOException;
 
 
-
 @SpringBootApplication
 public class RestServiceApplication {
-	private static final Logger log = LoggerFactory.getLogger(RestServiceApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(RestServiceApplication.class);
 
 
-	public static void main(String[] args) {
-		SpringApplication.run(RestServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(RestServiceApplication.class, args);
+    }
 
-	private final CustomerRepository repository;
+//    public RestServiceApplication(CustomerRepository repository) {
+//    }
 
-	public RestServiceApplication(CustomerRepository repository){
-		this.repository = repository;
-	}
-	@Autowired
-	TsvParserService tsvParserService;
-	@PostConstruct
-	public void importData() {
-		try {
-			tsvParserService.parseTsvFileAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.basics.tsv\\title.basics.tsv");
-		} catch (IOException | CsvValidationException e) {
-			// Handle exception
-		}
-	}
-	@Bean
-	public CommandLineRunner displayImdb(IMDBRepository imdbRepository){
-		return (args) -> {
-			imdbRepository.findAll().forEach(movie -> {
-				log.info(movie.toString());
-			});
-		};
-	}
+    @Autowired
+    TsvParserService tsvParserService;
+
+    @PostConstruct
+    public void importData() {
+        try {
+            tsvParserService.parseTsvFileAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.basics.tsv\\title.basics.tsv");
+        } catch (IOException | CsvValidationException e) {
+            // Handle exception
+        }
+    }
+
+    @Bean
+    public CommandLineRunner displayImdb(IMDBRepository imdbRepository) {
+        return (args) -> {
+            imdbRepository.findAll().forEach(movie -> {
+                log.info(movie.toString());
+            });
+        };
+    }
 
 
-
-	@Bean
-	public CommandLineRunner demo(CustomerRepository repository) {
-		return (args) -> {
-			// save a few customers
-			repository.save(new Customer("Jack", "Bauer", 45));
-			repository.save(new Customer("Chloe", "O'Brian", 52));
-			repository.save(new Customer("Kim", "Bauer", 32));
-			repository.save(new Customer("David", "Palmer", 21));
-			repository.save(new Customer("Michelle", "Dessler", 19));
-
-			// fetch all customers
-			log.info("Customers found with findAll():");
-			log.info("-------------------------------");
-			repository.findAll().forEach(customer -> {
-				log.info(customer.toString());
-			});
-			log.info("");
-
-			// fetch an individual customer by ID
-			Customer customer = repository.findById(1L);
-			log.info("Customer found with findById(1L):");
-			log.info("--------------------------------");
-			log.info(customer.toString());
-			log.info("");
-
-			// fetch customers by last name
-			log.info("Customer found with findByLastName('Bauer'):");
-			log.info("--------------------------------------------");
-			repository.findByLastName("Bauer").forEach(bauer -> {
-				log.info(bauer.toString());
-			});
-			log.info("");
-		};
-	}
+//	@Bean
+//	public CommandLineRunner demo(CustomerRepository repository) {
+//		return (args) -> {
+//			// save a few customers
+//			repository.save(new Customer("Jack", "Bauer", 45));
+//			repository.save(new Customer("Chloe", "O'Brian", 52));
+//			repository.save(new Customer("Kim", "Bauer", 32));
+//			repository.save(new Customer("David", "Palmer", 21));
+//			repository.save(new Customer("Michelle", "Kessler", 19));
+//
+//			// fetch all customers
+//			log.info("Customers found with findAll():");
+//			log.info("-------------------------------");
+//			repository.findAll().forEach(customer -> {
+//				log.info(customer.toString());
+//			});
+//			log.info("");
+//
+//			// fetch an individual customer by ID
+//			Customer customer = repository.findById(1L);
+//			log.info("Customer found with findById(1L):");
+//			log.info("--------------------------------");
+//			log.info(customer.toString());
+//			log.info("");
+//
+//			// fetch customers by last name
+//			log.info("Customer found with findByLastName('Bauer'):");
+//			log.info("--------------------------------------------");
+//			repository.findByLastName("Bauer").forEach(bauer -> {
+//				log.info(bauer.toString());
+//			});
+//			log.info("");
+//		};
+//	}
 
 }

@@ -28,17 +28,14 @@ public class TsvParserService {
                 .build()) {
             String[] line;
             int count = 0;
-            while ((line = reader.readNext()) !=null && count < 20){
-
+            while ((line = reader.readNext()) != null && count < 20) {
                 Movie movie = new Movie();
                 movie.setId(line[0]);
                 movie.setOrdering(line[1]);
                 movie.setTitle(line[2]);
                 imdbRepository.save(movie);
                 count++;
-
             }
         }
-
     }
 }

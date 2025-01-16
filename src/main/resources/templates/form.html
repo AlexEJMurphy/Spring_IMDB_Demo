@@ -4,7 +4,7 @@
 <form action="#" th:action="@{/}" th:object="${customer}" method="post">
     <table>
         <tr>
-            <td>First Name:</td>
+            <td>First :</td>
             <td><input type="text" th:field="*{firstName}" /></td>
             <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</td>
         </tr>
