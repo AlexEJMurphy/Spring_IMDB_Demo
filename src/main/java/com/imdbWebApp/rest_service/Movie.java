@@ -9,10 +9,11 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 public class Movie {
+    @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
+    String ordering;
     String title;
-    Rating rating;
-    Crew crew;
 
     public String getId() {
         return id;
@@ -30,29 +31,20 @@ public class Movie {
         this.title = title;
     }
 
-    public Rating getRating() {
-        return rating;
+    public String getOrdering() {
+        return ordering;
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
-    }
-
-    public Crew getCrew() {
-        return crew;
-    }
-
-    public void setCrew(Crew crew) {
-        this.crew = crew;
+    public void setOrdering(String ordering) {
+        this.ordering = ordering;
     }
 
     @Override
     public String toString() {
         return "Movie{" +
                 "id='" + id + '\'' +
+                ", ordering='" + ordering + '\'' +
                 ", title='" + title + '\'' +
-                ", rating=" + rating +
-                ", crew=" + crew +
                 '}';
     }
 
