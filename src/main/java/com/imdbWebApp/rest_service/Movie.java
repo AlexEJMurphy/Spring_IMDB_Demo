@@ -15,6 +15,7 @@ public class Movie {
     String ordering;
     String title;
 
+
     public String getId() {
         return id;
     }

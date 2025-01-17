@@ -1,8 +1,17 @@
 package com.imdbWebApp.rest_service;
 
 public class Rating {
+    String id;
     double averageRating;
     long numberOfVotes;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public double getAverageRating() {
         return averageRating;

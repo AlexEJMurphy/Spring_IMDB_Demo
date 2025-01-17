@@ -1,37 +1,55 @@
 package com.imdbWebApp.rest_service;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.Arrays;
+import java.util.List;
 
+@Entity
 public class Crew {
-    String director;
-    String writer;
+    @Id
+    String id;
+    @ElementCollection
+    List<String> directors;
+    @ElementCollection
+    List<String> writers;
 
-    public String getDirector() {
-        return director;
+    String writersString = Arrays.toString(writers);
+
+
+    String writersToString;
+
+    public String getId() {
+        return id;
     }
 
-    public void setDirector(String director) {
-        this.director = director;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getWriter() {
-        return writer;
+    public List<String> getDirectors() {
+        return directors;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setDirectors(String[] director) {
+        this.directors = directors;
+    }
+
+    public List<String> getWriters() {
+        return writers;
+    }
+
+    public void setWriters(List<String> writers) {
+        this.writers = writers;
     }
 
     @Override
     public String toString() {
         return "Crew{" +
-                "director='" + director + '\'' +
-                ", writer='" + writer + '\'' +
+                "id='" + id + '\'' +
+                "directors='" + directors + '\'' +
+                ", writers='" + writersString + '\'' +
                 '}';
     }
 }

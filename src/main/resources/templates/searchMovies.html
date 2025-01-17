@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<form action="#" th:action="@{/}" th:object="${movie}" method="post">
+<form action="/dataBaseDisplay" th:action="@{/dataBaseDisplay}" th:object="${movie}" method="GET">
     <table>
         <tr>
             <td>Search movie</td>
-            <td><input type="text" th:field="*{id}" /></td>
-            <td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">First Name Error</td>
+            <td><input type="text" th:field="*{title}" /></td>
+            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">First Name Error</td>
         </tr>
         <tr>
             <td><button type="submit">Submit</button></td>

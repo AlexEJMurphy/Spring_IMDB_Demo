@@ -9,7 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
 
@@ -30,22 +29,33 @@ public class RestServiceApplication {
     TsvParserService tsvParserService;
 
     @PostConstruct
-    public void importData() {
+    public void importBasicsData() {
         try {
-            tsvParserService.parseTsvFileAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.basics.tsv\\title.basics.tsv");
+            tsvParserService.parseBasicsTsvFileAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.basics.tsv\\title.basics.tsv");
+        } catch (IOException | CsvValidationException e) {
+            // Handle exception
+        }
+    }
+
+    @PostConstruct
+    public void importRatingsData() {
+        try {
+            tsvParserService.parseCrewTsvFileAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.crew.tsv\\title.crew.tsv");
         } catch (IOException | CsvValidationException e) {
             // Handle exception
         }
     }
 
     @Bean
-    public CommandLineRunner displayImdb(IMDBRepository imdbRepository) {
+    public CommandLineRunner displayImdb(IMDBRepository imdbRepository, IMDBCrewRepository imdbCrewRepository) {
         return (args) -> {
             imdbRepository.findAll().forEach(movie -> {
                 log.info(movie.toString());
             });
+            imdbCrewRepository.findAll().forEach(crew -> {
+                log.info(crew.toString());
+            });
         };
-    }
 
 
 //	@Bean
@@ -83,4 +93,5 @@ public class RestServiceApplication {
 //		};
 //	}
 
+    }
 }
