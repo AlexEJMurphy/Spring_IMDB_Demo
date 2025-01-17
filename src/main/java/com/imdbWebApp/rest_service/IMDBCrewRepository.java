@@ -3,7 +3,10 @@ package com.imdbWebApp.rest_service;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface IMDBCrewRepository extends CrudRepository<Crew, Long> {
+import java.util.List;
+import java.util.Optional;
 
+@Repository
+public interface IMDBCrewRepository extends CrudRepository<Crew, String> {
+    Optional<Crew> findByDirectors(List<String>directors);
 }

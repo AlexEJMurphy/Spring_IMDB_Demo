@@ -3,6 +3,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,15 +13,10 @@ import java.util.List;
 public class Crew {
     @Id
     String id;
-    @ElementCollection
+    @ElementCollection(fetch=FetchType.EAGER)
     List<String> directors;
-    @ElementCollection
+    @ElementCollection(fetch=FetchType.EAGER)
     List<String> writers;
-
-    String writersString = Arrays.toString(writers);
-
-
-    String writersToString;
 
     public String getId() {
         return id;
@@ -32,7 +30,7 @@ public class Crew {
         return directors;
     }
 
-    public void setDirectors(String[] director) {
+    public void setDirectors(List<String> directors) {
         this.directors = directors;
     }
 
@@ -48,8 +46,8 @@ public class Crew {
     public String toString() {
         return "Crew{" +
                 "id='" + id + '\'' +
-                "directors='" + directors + '\'' +
-                ", writers='" + writersString + '\'' +
+                ", directors='" + directors + '\'' +
+                ", writers='" + writers + '\'' +
                 '}';
     }
 }
