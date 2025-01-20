@@ -24,6 +24,23 @@ public class TsvParserService {
     @Autowired
     IMDBMovieAndCrewRepository imdbMovieAndCrewRepository;
 
+    //TODO : Refactor parsing service (1 method for both?)
+    public void parseBasicsTsvFileAndSave(String filePath) throws IOException, CsvValidationException {
+        try (CSVReader reader = new CSVReaderBuilder(new FileReader(filePath))
+                .withCSVParser(new CSVParserBuilder().withSeparator('\t').build())
+                .build()) {
+            String[] line;
+            int count = 0;
+            while ((line = reader.readNext()) != null && count < 20) {
+                Movie movie = new Movie();
+                movie.setId(line[0]);
+                movie.setOrdering(line[1]);
+                movie.setTitle(line[2]);
+                imdbRepository.save(movie);
+                count++;
+            }
+        }
+    }
 
     public void parseCrewAndMovieIntoQueryObjectAndSave(String dataset1FilePath, String dataset2FilePath) throws IOException, CsvException {
         Map<String, GetCrewForMovieTitle> mapOfMoviesAndCrews = new HashMap<>();
