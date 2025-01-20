@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface IMDBCrewRepository extends CrudRepository<Crew, String> {
     Optional<Crew> findByDirectors(List<String>directors);
+    Optional<Crew> findByWriters(List<String> writers);
 }

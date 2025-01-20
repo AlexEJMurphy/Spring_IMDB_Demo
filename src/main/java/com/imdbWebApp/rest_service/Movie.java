@@ -14,6 +14,15 @@ public class Movie {
     String id;
     String ordering;
     String title;
+    Crew crew;
+
+    public Crew getCrew() {
+        return crew;
+    }
+
+    public void setCrew(Crew crew) {
+        this.crew = crew;
+    }
 
 
     public String getId() {

@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+
+//TODO: Create a way for customers to purchase titles?
 @Entity
 public class Customer {
     @Id

@@ -1,5 +1,6 @@
 package com.imdbWebApp.rest_service;
 
+import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
@@ -28,32 +29,44 @@ public class RestServiceApplication {
     @Autowired
     TsvParserService tsvParserService;
 
-    @PostConstruct
-    public void importBasicsData() {
-        try {
-            tsvParserService.parseBasicsTsvFileAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.basics.tsv\\title.basics.tsv");
-        } catch (IOException | CsvValidationException e) {
-            // Handle exception
-        }
-    }
+//    @PostConstruct
+//    public void importBasicsData() {
+//        try {
+//            tsvParserService.parseBasicsTsvFileAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.basics.tsv\\title.basics.tsv");
+//        } catch (IOException | CsvValidationException e) {
+//            // Handle exception
+//        }
+//    }
+//
+//    @PostConstruct
+//    public void importCrewData() {
+//        try {
+//            tsvParserService.parseCrewTsvFileAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.crew.tsv\\title.crew.tsv");
+//        } catch (IOException | CsvValidationException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @PostConstruct
-    public void importRatingsData() {
-        try {
-            tsvParserService.parseCrewTsvFileAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.crew.tsv\\title.crew.tsv");
-        } catch (IOException | CsvValidationException e) {
-            // Handle exception
+    public void importBasicsAndCrewDataToOneQueryObject(){
+        try{
+            tsvParserService.parseCrewAndMovieIntoQueryObjectAndSave("C:\\Users\\Alexander.Murphy\\Downloads\\title.basics.tsv\\title.basics.tsv", "C:\\Users\\Alexander.Murphy\\Downloads\\title.crew.tsv\\title.crew.tsv");
+        } catch (IOException | CsvException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @Bean
-    public CommandLineRunner displayImdb(IMDBRepository imdbRepository, IMDBCrewRepository imdbCrewRepository) {
+    public CommandLineRunner displayImdb(IMDBRepository imdbRepository, IMDBCrewRepository imdbCrewRepository, IMDBMovieAndCrewRepository imdbMovieAndCrewRepository) {
         return (args) -> {
             imdbRepository.findAll().forEach(movie -> {
                 log.info(movie.toString());
             });
             imdbCrewRepository.findAll().forEach(crew -> {
                 log.info(crew.toString());
+            });
+            imdbMovieAndCrewRepository.findAll().forEach(getCrewForMovieTitle -> {
+                log.info(getCrewForMovieTitle.toString());
             });
         };
 
