@@ -13,7 +13,10 @@ import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 
-
+//TODO: Query actual names against name id,
+// use parallel streams to improve performance
+// integrate database display into search movies page
+// search titles by tokens(?)
 @SpringBootApplication
 public class RestServiceApplication {
     private static final Logger log = LoggerFactory.getLogger(RestServiceApplication.class);
