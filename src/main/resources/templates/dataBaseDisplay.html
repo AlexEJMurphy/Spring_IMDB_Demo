@@ -8,14 +8,14 @@
 <table>
     <tr>
         <th>ID</th>
-        <th>Ordering</th>
+        <th>Writers</th>
         <th>Title</th>
         <!-- Add more columns as needed -->
     </tr>
-        <tr th:each="movie : ${movies}">
-        <td th:text="${movie.id}"></td>
-        <td th:text="${movie.ordering}"></td>
-        <td th:text="${movie.title}"></td>
+        <tr th:each="getCrewForMovieTitle : ${getCrewForMovieTitle}">
+        <td th:text="${getCrewForMovieTitle.crewId}"></td>
+        <td th:text="${getCrewForMovieTitle.writers}"></td>
+        <td th:text="${getCrewForMovieTitle.title}"></td>
     </tr>
     <div th:if="${error}" th:text="${error}"></div>
 </table>

@@ -21,9 +21,11 @@ public class DatabaseDisplayController implements WebMvcConfigurer {
 
     @Autowired
     IMDBRepository imdbRepository;
+    @Autowired
+    IMDBMovieAndCrewRepository imdbMovieAndCrewRepository;
 
-    public DatabaseDisplayController(IMDBRepository imdbRepository){
-        this.imdbRepository = imdbRepository;
+    public DatabaseDisplayController(IMDBMovieAndCrewRepository imdbMovieAndCrewRepository){
+        this.imdbMovieAndCrewRepository = imdbMovieAndCrewRepository;
     }
 
 
@@ -37,10 +39,10 @@ public class DatabaseDisplayController implements WebMvcConfigurer {
     @GetMapping("/dataBaseDisplay")
     public String getMovieByID(@RequestParam(value = "title", required = false, defaultValue = "0") String title, Model model) {
         try {
-            Optional<Movie> movie = imdbRepository.findByTitle(title);
+            Optional<GetCrewForMovieTitle> getCrewForMovieTitle = imdbMovieAndCrewRepository.findWritersByTitle(title);
 
-            if (movie.isPresent()) {
-                model.addAttribute("movies", movie.get());
+            if (getCrewForMovieTitle.isPresent()) {
+                model.addAttribute("getCrewForMovieTitle", getCrewForMovieTitle.get());
                 return "dataBaseDisplay";
             } else {
                 model.addAttribute("error", "Movie not found");
