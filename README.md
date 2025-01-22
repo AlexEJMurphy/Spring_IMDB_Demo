@@ -1,8 +1,8 @@
 # Exposing [IMDb Non-Commercial Datasets](https://developer.imdb.com/non-commercial-datasets/#titleratingstsvgz)
 
-##  - Using the Spring Framework
+##  Using the Spring Framework
 
-### This project was my first step into the world of Spring. The intention of the project for the user to input the title of a film and get the associated director(s) and/or writer(s).
+### This project is my first step into the world of Spring. The intention of the project for the user to input the title of a film and get the associated director(s) and/or writer(s).
 
 #### Rather than load different datasets into different repositories and query with a join, this project parses fields from the 'title.basics.tsv.gz' AND 'title.crew.tsv.gz' into a map of 'GetCrewForMovieTitle' Query Objects and saves it to 'IMDBMovieAndCrewRepository', an approach based on  [this](https://softwareengineering.stackexchange.com/questions/421229/data-repository-and-complex-queries-dto) discussion.
 
