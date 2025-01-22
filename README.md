@@ -4,7 +4,7 @@
 
 ### This project was my first step into the world of Spring. The intention of the project for the user to input the title of a film and get the associated director(s) and/or writer(s).
 
-#### Rather than load different datasets into different repositories and query with a join, this project parses fields from the 'title.basics.tsv.gz' AND 'title.crew.tsv.gz' into a map of Query Objects 'GetCrewForMovieTitle' and saves it to 'IMDBMovieAndCrewRepository', an approach based on  [this](https://softwareengineering.stackexchange.com/questions/421229/data-repository-and-complex-queries-dto) discussion.
+#### Rather than load different datasets into different repositories and query with a join, this project parses fields from the 'title.basics.tsv.gz' AND 'title.crew.tsv.gz' into a map of 'GetCrewForMovieTitle' Query Objects and saves it to 'IMDBMovieAndCrewRepository', an approach based on  [this](https://softwareengineering.stackexchange.com/questions/421229/data-repository-and-complex-queries-dto) discussion.
 
 
 To run the project through Idea: Execute Maven Goal -> mvn spring-boot:run
