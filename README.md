@@ -11,7 +11,7 @@ To run the project through Idea: Execute Maven Goal -> mvn spring-boot:run
 
 #### Prerequisites:
 
-Step 1  - Download
+Download
 - title.basics.tsv.gz 
 - title.crew.tsv.gz from the link in the title of this README
 
