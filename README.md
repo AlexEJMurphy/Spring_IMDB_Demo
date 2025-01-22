@@ -16,7 +16,7 @@ Download
 - title.crew.tsv.gz from the link in the title of this README
 
 
-Replace the filepaths in 'RestServiceApplication line 36' with your local paths to the datasets
+Replace the filepaths in 'RestServiceApplication' - line 36 with your local paths to the datasets.
 
 #### Dependencies:
 
