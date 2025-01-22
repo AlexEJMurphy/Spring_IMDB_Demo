@@ -9,11 +9,10 @@ import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.zip.GZIPInputStream;
 
 @Service
 public class TsvParserService {
@@ -21,8 +20,11 @@ public class TsvParserService {
     @Autowired
     IMDBMovieAndCrewRepository imdbMovieAndCrewRepository;
 
+    //String nameFilePath = Objects.requireNonNull(TsvParserService.class.getClassLoader().getResource("name.basics.tsv")).getFile();
+
     //Not exactly a method uncle bob would approve of
     public void parseCrewAndMovieIntoQueryObjectAndSave(String dataset1FilePath, String dataset2FilePath) throws IOException, CsvException {
+
         Map<String, GetCrewForMovieTitle> mapOfMoviesAndCrews = new HashMap<>();
         List<GetCrewForMovieTitle> batchToSave = new ArrayList<>();
         int batchSize = 1000;
@@ -79,5 +81,15 @@ public class TsvParserService {
             }
         }
     }
+//    public void processNameData() throws IOException{
+//        InputStream inputStream = new FileInputStream(nameFilePath);
+//        GZIPInputStream gzipInputStream = new GZIPInputStream(inputStream);
+//        InputStreamReader inputStreamReader = new InputStreamReader(gzipInputStream);
+//        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//        return bufferedReader
+//                .lines().parallel().map(TsvParserService::);
+//    }
+//
+//    private static Names
 }
 

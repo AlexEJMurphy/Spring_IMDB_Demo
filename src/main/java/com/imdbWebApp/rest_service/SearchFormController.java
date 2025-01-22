@@ -21,17 +21,16 @@ public class SearchFormController implements WebMvcConfigurer {
 
 
     private static final Logger log = LoggerFactory.getLogger(RestServiceApplication.class);
-    CustomerRepository repository;
-    IMDBRepository imdbRepository;
+
     IMDBMovieAndCrewRepository imdbMovieAndCrewRepository;
 
     public SearchFormController(IMDBMovieAndCrewRepository imdbMovieAndCrewRepository) {
         this.imdbMovieAndCrewRepository = imdbMovieAndCrewRepository;
     }
 
-    public Optional<Movie> findByID(Long id) {
-        return imdbRepository.findById(id);
-    }
+//    public Optional<Movie> findByID(Long id) {
+//        return imdbRepository.findById(id);
+//    }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {

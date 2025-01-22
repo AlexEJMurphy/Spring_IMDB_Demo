@@ -4,7 +4,7 @@
 <form action="/dataBaseDisplay" th:action="@{/dataBaseDisplay}" th:object="${GetCrewForMovieTitle}" method="GET">
     <table>
         <tr>
-            <td>Enter the title of a movie, find the writer</td>
+            <td>Enter the title of a movie, find the writer(s) </td>
             <td><input type="text" th:field="*{title}" /></td>
             <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">First Name Error</td>
         </tr>

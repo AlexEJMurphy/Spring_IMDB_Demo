@@ -20,8 +20,6 @@ import java.util.Optional;
 public class DatabaseDisplayController implements WebMvcConfigurer {
 
     @Autowired
-    IMDBRepository imdbRepository;
-    @Autowired
     IMDBMovieAndCrewRepository imdbMovieAndCrewRepository;
 
     public DatabaseDisplayController(IMDBMovieAndCrewRepository imdbMovieAndCrewRepository){

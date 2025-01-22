@@ -17,10 +17,10 @@ import java.io.IOException;
 // use parallel streams to improve performance
 // integrate database display into search movies page
 // search titles by tokens(?)
+
 @SpringBootApplication
 public class RestServiceApplication {
     private static final Logger log = LoggerFactory.getLogger(RestServiceApplication.class);
-
 
     public static void main(String[] args) {
         SpringApplication.run(RestServiceApplication.class, args);
@@ -40,7 +40,7 @@ public class RestServiceApplication {
     }
 
     @Bean
-    public CommandLineRunner displayImdb(IMDBRepository imdbRepository, IMDBCrewRepository imdbCrewRepository, IMDBMovieAndCrewRepository imdbMovieAndCrewRepository) {
+    public CommandLineRunner displayImdb(IMDBMovieAndCrewRepository imdbMovieAndCrewRepository) {
         return (args) -> {
             imdbMovieAndCrewRepository.findAll().forEach(getCrewForMovieTitle -> {
                 log.info(getCrewForMovieTitle.toString());

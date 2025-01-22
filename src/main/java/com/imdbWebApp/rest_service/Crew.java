@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
-public class Crew {
+public class Crew implements Serializable{
     //TODO: Use DTO's instead of FetchType.EAGER
 
     @Id
